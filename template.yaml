@@ -1,0 +1,107 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Sample SAM Template for serverless-wc-data
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 20
+    Handler: app.lambda_handler
+    Runtime: python3.9
+
+Resources:
+  TheWorldCupApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+
+  ApiKey:
+    Type: 'AWS::ApiGateway::ApiKey'
+    DependsOn:
+      - TheWorldCupApi
+      - usagePlan
+    Properties:
+      Name: WCApiKey
+      Description: API Key V1
+      Enabled: true
+      StageKeys:
+        - RestApiId: !Ref TheWorldCupApi
+          StageName: Prod
+
+  usagePlanKey:
+    Type: AWS::ApiGateway::UsagePlanKey
+    Properties:
+      KeyId: !Ref ApiKey
+      KeyType: API_KEY
+      UsagePlanId: !Ref usagePlan
+
+  usagePlan:
+    Type: 'AWS::ApiGateway::UsagePlan'
+    Properties:
+      ApiStages:
+        - ApiId: !Ref TheWorldCupApi
+          Stage: !Ref TheWorldCupApi.Stage
+      Description: Customer ABC's usage plan
+      Quota:
+        Limit: 5000
+        Period: MONTH
+      Throttle:
+        BurstLimit: 200
+        RateLimit: 100
+      UsagePlanName: Plan_WorldCup
+
+  WorldCupDataFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Description: "WorldCup Data Function"    
+      CodeUri: ./src/wc_data
+      Architectures:
+        - arm64
+      Events:
+        WorldCupApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TheWorldCupApi
+            Path: /world-cup
+            Method: get
+            Auth:
+              ApiKeyRequired: true
+      Policies:
+        - Statement:
+          - Sid: DynamoDBRead
+            Effect: Allow
+            Action:
+              - dynamodb:*
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: '*'
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  WorldCupDataFunction:
+    Description: "World Cup Data Lambda Function ARN"
+    Value: !GetAtt WorldCupDataFunction.Arn
+  WCDataFunctionIamRole:
+    Description: "Implicit IAM Role created for World Cup Data function"
+    Value: !GetAtt WorldCupDataFunction.Arn
+  WCApiKey:
+    Description: "API Key"
+    Value: !Ref ApiKey
+  WCUsagePlan:
+    Description: "Usage Plan ID"
+    Value: !Ref usagePlan
+  WorldCupApi:
+    Description: "API Gateway endpoint URL for Prod stage for World Cup Data function"
+    Value: 
+      Fn::Sub:
+        - https://${ServerlessRestApi}.execute-api.${Region}.amazonaws.com/${StageName}/world-cup
+        - Region:
+            Ref: AWS::Region
+          ServerlessRestApi:
+            Ref: TheWorldCupApi
+          StageName:
+            Ref: TheWorldCupApi.Stage
