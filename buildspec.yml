@@ -1,0 +1,40 @@
+version: 0.2
+
+env:
+  variables:
+     REGION: "us-east-1"
+     TEST_HOST: "Mexico"
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - python3 -m pip install --upgrade pip
+  pre_build:
+    commands:
+      - echo pre-build started
+      - aws --version
+      - sam --version
+  build:
+    commands:
+      - cd $CODEBUILD_SRC_DIR
+      - sam build
+      - "sam deploy --config-env development --no-confirm-changeset || :"
+
+      # Obtain Main Env Vars
+      - eval $(aws cloudformation describe-stack-resources --stack-name serverless-wc-data --region $REGION --query "StackResources[*].[LogicalResourceId, PhysicalResourceId]" --output text | awk '{print "export "$1"="$2}')
+
+      # Obtain API KEY
+      - aws apigateway get-usage-plan-key --key-id $ApiKey --usage-plan-id $usagePlan --region $REGION
+      - eval $(aws apigateway get-usage-plan-key --key-id $ApiKey --usage-plan-id $usagePlan --region $REGION --query 'value' --output text | awk '{print "export X_API_KEY="$1}')
+   
+      # Obtaining URL
+      - export URL="https://$TheWorldCupApi.execute-api.$REGION.amazonaws.com/$TheWorldCupApiProdStage/world-cup"
+  post_build:
+    commands:
+      - echo "Preparing simple test to send a GET request"
+      - sleep 20
+      - echo "Simple test, consulting WC Data from $TEST_HOST"
+      # Simple Test
+      - "curl -H \"Content-type:json\" -H \"x-api-key: $X_API_KEY\" \"$URL?host=$TEST_HOST\""
+
