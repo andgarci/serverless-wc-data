@@ -77,6 +77,13 @@ Resources:
               - logs:CreateLogStream
               - logs:PutLogEvents
             Resource: '*'
+          - Sid: GetParameter
+            Effect: Allow
+            Action:
+              - ssm:GetParameter
+              - ssm:GetParameters
+              - ssm:GetParametersByPath
+            Resources: '*'
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

@@ -1,10 +1,16 @@
 import json
+import boto3
 import requests
 from services.WorldCup import WCData
 
 def lambda_handler(event, context):
     try:
         host = event['queryStringParameters']['host']
+        ssm_client = boto3.client('ssm')
+        table_name = ssm_client.get_parameter(
+            Names='/development/dynamo_table',
+            WithDecryption=False
+        )
         wrapper = WCData("simple-test")
         items = wrapper.get_host(host)
         status = 200
