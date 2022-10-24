@@ -128,7 +128,7 @@ Outputs:
     Value: !GetAtt WorldCupDataFunction.Arn
   InputSQS:
     Description: "Input WorldCup data SQS Queue"
-    Value: !GetAtt InputSQS.Arn
+    Value: !GetAtt WorldCupInputQueue.Arn
   WCApiKey:
     Description: "API Key"
     Value: !Ref ApiKey
