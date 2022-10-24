@@ -115,6 +115,7 @@ Resources:
               - ssm:GetParameter
               - ssm:GetParameters
               - ssm:GetParametersByPath
+            Resource: '*'
           - Sid: SQSReadOnlyAccess
             Effect: Allow
             Action:
@@ -126,7 +127,6 @@ Resources:
               - sqs:DeleteMessage
               - sqs:GetQueueAttributes
             Resource: '*'
-
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
