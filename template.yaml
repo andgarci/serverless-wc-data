@@ -83,7 +83,7 @@ Resources:
               - ssm:GetParameter
               - ssm:GetParameters
               - ssm:GetParametersByPath
-            Resources: '*'
+            Resource: '*'
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

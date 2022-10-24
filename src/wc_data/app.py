@@ -1,6 +1,5 @@
 import json
 import boto3
-import requests
 from services.WorldCup import WCData
 
 def lambda_handler(event, context):
