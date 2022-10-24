@@ -115,6 +115,14 @@ Resources:
               - ssm:GetParameter
               - ssm:GetParameters
               - ssm:GetParametersByPath
+          - Sid: SQSReadOnlyAccess
+            Effect: Allow
+            Action:
+              - sqs:GetQueueAttributes
+              - sqs:GetQueueUrl
+              - sqs:ListDeadLetterSourceQueues
+              - sqs:ListQueues
+            Resource: '*'
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

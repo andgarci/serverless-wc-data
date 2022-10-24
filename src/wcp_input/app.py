@@ -3,19 +3,18 @@ import boto3
 from services.WorldCup import WCData
 
 def lambda_handler(event, context):
-    # try:
-    #     host = event['queryStringParameters']['host']
-    #     ssm_client = boto3.client('ssm')
-    #     table_name = ssm_client.get_parameter(
-    #         Names='/development/dynamo_table',
-    #         WithDecryption=False
-    #     )
-    #     wrapper = WCData("simple-test")
-    #     items = wrapper.get_host(host)
-    #     status = 200
+    #try:
+        #for record in event['Records']:
+            #pull the body out & json load it
+            #jsonmaybe=(record["body"])
+            #jsonmaybe=json.loads(jsonmaybe)
+            
+            #now the normal stuff works
+            #world_cup_event = jsonmaybe["Records"][0]["world_cup"]
+            #print(world_cup_event)
     # except Exception as e:
     #     status = 400
-    #     items = {"message": "Cant obtain information for provided host", "error": str(e)}
+    #     items = {"message": "Can't obtain Records", "error": str(e)}
     #     print(e)
 
     status = 200
