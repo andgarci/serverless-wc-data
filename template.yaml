@@ -122,6 +122,9 @@ Resources:
               - sqs:GetQueueUrl
               - sqs:ListDeadLetterSourceQueues
               - sqs:ListQueues
+              - sqs:ReceiveMessage
+              - sqs:DeleteMessage
+              - sqs:GetQueueAttributes
             Resource: '*'
 
 Outputs:
