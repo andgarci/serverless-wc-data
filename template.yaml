@@ -99,9 +99,6 @@ Resources:
           Type: SQS
           Properties:
             Queue: !GetAtt WorldCupInputQueue.Arn
-            FilterCriteria:
-              Filters:
-                - Pattern: '{"key": ["host", "year"]}'
       Policies:
         - Statement:
           - Sid: DynamoDBWrite
