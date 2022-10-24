@@ -9,6 +9,8 @@ Globals:
     Timeout: 20
     Handler: app.lambda_handler
     Runtime: python3.9
+    Architectures:
+      - arm64
 
 Resources:
   TheWorldCupApi:
@@ -51,13 +53,16 @@ Resources:
         RateLimit: 100
       UsagePlanName: Plan_WorldCup
 
+  WorldCupInputQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "WCPInputData"
+
   WorldCupDataFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      Description: "WorldCup Data Function"    
-      CodeUri: ./src/wc_data
-      Architectures:
-        - arm64
+      Description: "WorldCup Data Function"
+      CodeUri: ./src/wcp_data
       Events:
         WorldCupApi:
           Type: Api
@@ -84,6 +89,35 @@ Resources:
               - ssm:GetParameters
               - ssm:GetParametersByPath
             Resource: '*'
+  BulkDataFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "Populate Database with data received from SQS"
+      CodeUri: ./src/wcp_input
+      Events:
+        WorldCupQueue:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt WorldCupInputQueue.Arn
+            FilterCriteria:
+              Filters:
+                - Pattern: '{"key": ["host", "year"]}'
+      Policies:
+        - Statement:
+          - Sid: DynamoDBWrite
+            Effect: Allow
+            Action:
+              - dynamodb:*
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: '*'
+          - Sid: GetParameter
+            Effect: Allow
+            Action:
+              - ssm:GetParameter
+              - ssm:GetParameters
+              - ssm:GetParametersByPath
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -95,6 +129,9 @@ Outputs:
   WCDataFunctionIamRole:
     Description: "Implicit IAM Role created for World Cup Data function"
     Value: !GetAtt WorldCupDataFunction.Arn
+  InputSQS:
+    Description: "Input WorldCup data SQS Queue"
+    Value: !GetAtt InputSQS.Arn
   WCApiKey:
     Description: "API Key"
     Value: !Ref ApiKey

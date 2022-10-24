@@ -14,6 +14,7 @@ class WCData:
     def get_host(self, host):
         try:
             result = self.table.query(
+                IndexName='host-index',
                 KeyConditionExpression=Key('host').eq(str(host))
             )
             print(result)
