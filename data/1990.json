@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1990"
+    },
+    "host": {
+        "S": "Italy"
+    },
+    "champion": {
+        "S": "Germany"
+    },
+    "runner-up": {
+        "S": "Argentina"
+    },
+    "top-scorers": {
+        "S": "Salvatore Schillaci"
+    },
+    "top-scorers-goals": {
+        "S": "6"
+    }
+}

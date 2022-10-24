@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1954"
+    },
+    "host": {
+        "S": "Switzerland"
+    },
+    "champion": {
+        "S": "Germany"
+    },
+    "runner-up": {
+        "S": "Hungary"
+    },
+    "top-scorers": {
+        "S": "Sandor Kocsis"
+    },
+    "top-scorers-goals": {
+        "S": "11"
+    }
+}

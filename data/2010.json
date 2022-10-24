@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "2010"
+    },
+    "host": {
+        "S": "South Africa"
+    },
+    "champion": {
+        "S": "Spain"
+    },
+    "runner-up": {
+        "S": "Netherlands"
+    },
+    "top-scorers": {
+        "S": "Thomas Müller, David Villa, Wesley Sneijder, Diego Forlán"
+    },
+    "top-scorers-goals": {
+        "S": "5"
+    }
+}

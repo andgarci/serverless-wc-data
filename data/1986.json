@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1986"
+    },
+    "host": {
+        "S": "Mexico"
+    },
+    "champion": {
+        "S": "Argentina"
+    },
+    "runner-up": {
+        "S": "Germany"
+    },
+    "top-scorers": {
+        "S": "Gary Lineker"
+    },
+    "top-scorers-goals": {
+        "S": "6"
+    }
+}

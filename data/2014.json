@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "2014"
+    },
+    "host": {
+        "S": "Brazil"
+    },
+    "champion": {
+        "S": "Germany"
+    },
+    "runner-up": {
+        "S": "Argentina"
+    },
+    "top-scorers": {
+        "S": "James Rodríguez"
+    },
+    "top-scorers-goals": {
+        "S": "6"
+    }
+}

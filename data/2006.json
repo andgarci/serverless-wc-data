@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "2006"
+    },
+    "host": {
+        "S": "Germany"
+    },
+    "champion": {
+        "S": "Italy"
+    },
+    "runner-up": {
+        "S": "France"
+    },
+    "top-scorers": {
+        "S": "Miroslav Klose"
+    },
+    "top-scorers-goals": {
+        "S": "5"
+    }
+}

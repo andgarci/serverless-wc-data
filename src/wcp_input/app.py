@@ -1,21 +1,40 @@
+import logging
 import json
 import boto3
-from services.WorldCup import WCData
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
-    #try:
-        #for record in event['Records']:
-            #pull the body out & json load it
-            #jsonmaybe=(record["body"])
-            #jsonmaybe=json.loads(jsonmaybe)
-            
-            #now the normal stuff works
-            #world_cup_event = jsonmaybe["Records"][0]["world_cup"]
-            #print(world_cup_event)
-    # except Exception as e:
-    #     status = 400
-    #     items = {"message": "Can't obtain Records", "error": str(e)}
-    #     print(e)
+
+    try:
+        client = boto3.client('dynamodb')
+        ssm_client = boto3.client('ssm')
+
+        parameter = ssm_client.get_parameter(
+            Name='/development/dynamo_table',
+            WithDecryption=False
+        )
+        table_name = parameter['Parameter']['Value']
+    except Exception as e:
+        status = 500
+        items = {"message": "Can't create resources", "error": str(e)}
+        logger.error(items)
+
+    try:
+        for message in event['Records']:
+            json_item = json.loads(message["body"])
+            response = client.put_item(
+                Item=json_item,
+                ReturnConsumedCapacity='TOTAL',
+                TableName=table_name,
+            )
+            logger.info(response)
+
+    except Exception as e:
+        status = 400
+        items = {"message": "Can't obtain Records", "error": str(e)}
+        logger.error(items)
 
     status = 200
     items = []
@@ -23,6 +42,6 @@ def lambda_handler(event, context):
     return {
         "statusCode": status,
         "body": json.dumps({
-            "message": event
+            "message": items
         }, indent=4, sort_keys=True, default=str),
     }

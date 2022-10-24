@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1934"
+    },
+    "host": {
+        "S": "Italy"
+    },
+    "champion": {
+        "S": "Italy"
+    },
+    "runner-up": {
+        "S": "Czechoslovakia"
+    },
+    "top-scorers": {
+        "S": "Oldřich Nejedlýn"
+    },
+    "top-scorers-goals": {
+        "S": "5"
+    }
+}

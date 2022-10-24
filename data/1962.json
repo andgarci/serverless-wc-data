@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1962"
+    },
+    "host": {
+        "S": "Chile"
+    },
+    "champion": {
+        "S": "Brazil"
+    },
+    "runner-up": {
+        "S": "Czechoslovakia"
+    },
+    "top-scorers": {
+        "S": "Garrincha, Vavá, Flórián Albert, Valentin Ivanov, Dražan Jerković, Leonel Sánchez"
+    },
+    "top-scorers-goals": {
+        "S": "4"
+    }
+}

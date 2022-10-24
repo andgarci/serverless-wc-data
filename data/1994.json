@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1990"
+    },
+    "host": {
+        "S": "USA"
+    },
+    "champion": {
+        "S": "Brazil"
+    },
+    "runner-up": {
+        "S": "Italy"
+    },
+    "top-scorers": {
+        "S": "Oleg Salenko, Hristo Stoitchkov"
+    },
+    "top-scorers-goals": {
+        "S": "6"
+    }
+}

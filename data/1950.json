@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1950"
+    },
+    "host": {
+        "S": "Brazil"
+    },
+    "champion": {
+        "S": "Uruguay"
+    },
+    "runner-up": {
+        "S": "Brazil"
+    },
+    "top-scorers": {
+        "S": "Ademir"
+    },
+    "top-scorers-goals": {
+        "S": "9"
+    }
+}

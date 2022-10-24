@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1934"
+    },
+    "host": {
+        "S": "France"
+    },
+    "champion": {
+        "S": "France"
+    },
+    "runner-up": {
+        "S": "Brazil"
+    },
+    "top-scorers": {
+        "S": "Davor Šuker"
+    },
+    "top-scorers-goals": {
+        "S": "6"
+    }
+}

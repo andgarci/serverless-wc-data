@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1938"
+    },
+    "host": {
+        "S": "Francia"
+    },
+    "champion": {
+        "S": "Italy"
+    },
+    "runner-up": {
+        "S": "Hungary"
+    },
+    "top-scorers": {
+        "S": "Leônidas da Silvan"
+    },
+    "top-scorers-goals": {
+        "S": "7"
+    }
+}

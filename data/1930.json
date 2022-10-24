@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1930"
+    },
+    "host": {
+        "S": "Uruguay"
+    },
+    "champion": {
+        "S": "Uruguay"
+    },
+    "runner-up": {
+        "S": "Italy"
+    },
+    "top-scorers": {
+        "S": "Guillermo Stábile"
+    },
+    "top-scorers-goals": {
+        "S": "8"
+    }
+}

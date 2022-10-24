@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1958"
+    },
+    "host": {
+        "S": "Sweden"
+    },
+    "champion": {
+        "S": "Brazil"
+    },
+    "runner-up": {
+        "S": "Sweden"
+    },
+    "top-scorers": {
+        "S": "Just Fontaine"
+    },
+    "top-scorers-goals": {
+        "S": "13"
+    }
+}

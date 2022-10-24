@@ -1,0 +1,21 @@
+{
+    "year": {
+        "N": "1970"
+    },
+    "host": {
+        "S": "Mexico"
+    },
+    "champion": {
+        "S": "Brazil"
+    },
+    "runner-up": {
+        "S": "Italia"
+    },
+    "top-scorers": {
+        "S": "Gerd Müller"
+    },
+    "top-scorers-goals": {
+        "S": "10"
+    }
+    
+}

@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "2018"
+    },
+    "host": {
+        "S": "Russia"
+    },
+    "champion": {
+        "S": "France"
+    },
+    "runner-up": {
+        "S": "Croatia"
+    },
+    "top-scorers": {
+        "S": "Harry Kane"
+    },
+    "top-scorers-goals": {
+        "S": "6"
+    }
+}

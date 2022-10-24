@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "2022"
+    },
+    "host": {
+        "S": "Qatar"
+    },
+    "champion": {
+        "S": ""
+    },
+    "runner-up": {
+        "S": ""
+    },
+    "top-scorers": {
+        "S": ""
+    },
+    "top-scorers-goals": {
+        "S": ""
+    }
+}

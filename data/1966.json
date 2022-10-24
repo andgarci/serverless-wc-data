@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1934"
+    },
+    "host": {
+        "S": "England"
+    },
+    "champion": {
+        "S": "England"
+    },
+    "runner-up": {
+        "S": "Germany"
+    },
+    "top-scorers": {
+        "S": "Eusébio"
+    },
+    "top-scorers-goals": {
+        "S": "9"
+    }
+}

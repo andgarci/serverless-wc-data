@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1978"
+    },
+    "host": {
+        "S": "Argentina"
+    },
+    "champion": {
+        "S": "Argentina"
+    },
+    "runner-up": {
+        "S": "Netherlands"
+    },
+    "top-scorers": {
+        "S": "Mario Kempes"
+    },
+    "top-scorers-goals": {
+        "S": "6"
+    }
+}

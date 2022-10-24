@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
      REGION: "us-east-1"
-     TEST_HOST: "Mexico"
+     TEST_HOST: "Uruguay"
 phases:
   install:
     runtime-versions:
@@ -32,6 +32,11 @@ phases:
       - export URL="https://$TheWorldCupApi.execute-api.$REGION.amazonaws.com/$TheWorldCupApiProdStage/world-cup"
   post_build:
     commands:
+      - echo "Obtain URL_QUEUE"
+      - URL_QUEUE=$(aws sqs list-queues --queue-name-prefix WCP --query 'QueueUrls[0]' --output text)
+      - cd $CODEBUILD_SRC_DIR/data
+      - echo "Sending historical data to the Simple Queue Service"
+      - for FILE in $(ls -1 *.json); do FILE_CONTENT=$(cat $FILE); aws sqs send-message --queue-url $URL_QUEUE --message-body "$FILE_CONTENT"; done
       - echo "Preparing simple test to send a GET request"
       - sleep 20
       - echo "Simple test, consulting WC Data from $TEST_HOST"

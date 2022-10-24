@@ -1,0 +1,20 @@
+{
+    "year": {
+        "N": "1982"
+    },
+    "host": {
+        "S": "Spain"
+    },
+    "champion": {
+        "S": "Italy"
+    },
+    "runner-up": {
+        "S": "Germany"
+    },
+    "top-scorers": {
+        "S": "Paolo Rossi"
+    },
+    "top-scorers-goals": {
+        "S": "6"
+    }
+}
