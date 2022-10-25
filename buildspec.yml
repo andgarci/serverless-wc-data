@@ -19,7 +19,7 @@ phases:
     commands:
       - cd $CODEBUILD_SRC_DIR
       - sam build
-      - "sam deploy --config-env development --no-confirm-changeset || :"
+      - "sam deploy --config-env development --resolve-s3 --no-confirm-changeset || :"
 
       # Obtain Main Env Vars
       - eval $(aws cloudformation describe-stack-resources --stack-name serverless-wc-data --region $REGION --query "StackResources[*].[LogicalResourceId, PhysicalResourceId]" --output text | awk '{print "export "$1"="$2}')
