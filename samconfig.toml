@@ -3,7 +3,6 @@ version = 0.1
 [development.deploy]
 [development.deploy.parameters]
 stack_name = "serverless-wc-data"
-s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-14ele9tmrod6t"
 s3_prefix = "serverless-wc-data"
 region = "us-east-1"
 confirm_changeset = true
